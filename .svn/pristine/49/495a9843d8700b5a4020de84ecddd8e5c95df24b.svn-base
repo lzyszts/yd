@@ -1,6 +1,0 @@
-<script type="text/javascript" src="{{$Think.__MY__STATIC__}}/common/layui/layui.js"></script>
-{{if !empty($js) }}
-    {{foreach $js as $hook }}
-        <script type="text/javascript" src="{{$hook}}" ></script>
-    {{/foreach}}
-{{/if}}
