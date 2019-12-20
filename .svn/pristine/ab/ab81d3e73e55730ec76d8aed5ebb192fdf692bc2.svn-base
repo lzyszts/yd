@@ -1,0 +1,36 @@
+{{include file='public/head' /}}
+<body>
+    {{include file='public/nav' /}}
+    <div class="banner banner-xunweiji"></div>
+    <!-- video -->
+    <div class="video color-bank1">
+        <div class="container">
+            <div class="row video-main">
+                {{foreach $data as $v}}
+                <div class="col-lg-4 col-sm-4 col-xs-12 v">
+                    <a href="{{:url('video',['id'=>$v['id']])}}">
+                        <img src="{{:$v['img_url']}}" class="video-bg">
+                        <div class="video-play">
+                            <img src="{{$Think.__MY__STATIC__}}/home/image/play.png">
+                        </div>
+                        <div class="video-title">
+                            <div class="font-sy font-17">{{:date('Y/m/d',$v['add_time'])}}</div>
+                            <div class="font-y font-20">{{:$v['download_name']}}</div>
+                        </div>
+                    </a>
+                </div>
+                {{/foreach}}
+                <!-- 分页 -->
+                <nav style="text-align: center;">
+                    {{$data|raw}}
+                </nav>
+            </div>
+        </div> 
+    </div>
+    {{include file='public/footer' /}}
+</body>
+{{include file='public/foot' /}}
+<script>
+
+</script>
+</html>

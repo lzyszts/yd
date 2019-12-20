@@ -1,0 +1,208 @@
+{{include file='public/head' /}}
+<link rel="stylesheet" href="{{$Think.__MY__STATIC__}}/home/css/animate.css"/>
+<style type="text/css">
+    .shade{
+        width: 100%;
+        height: 100%;
+        background: #000;
+        opacity: 0.7;
+        left: 0;
+        top: 0;
+        display: none;
+        position: fixed;
+    }
+</style>
+<body data-spy="scroll" data-target=".right-navbar">
+    {{include file='public/nav' /}}
+    <div class="banner banner-service"></div>
+    <div class="service-content color-bank">
+        <div class="container">
+            <div class="service-title">
+                <span id="shfw">售后服务</span>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="psfw">配送范围</p>
+                <p class="service-body-content">小罐茶委托顺丰速运等专业第三方快递公司进行配送，同时，小罐茶所有商品均支持货到付款服务，保证全国各地的用户 都能收到小罐茶给您精心准备的快递商品。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="psfs">配送方式</p>
+                <p class="service-body-content">
+                    我们将根据您所在区域为您安排速度最快服务最优的配送服务。<br>
+                    <br><b>我们按照以下原则选择快递的配送方式：</b><br>
+                    顺丰无法配送的区域，将根据实际情况给您安排圆通或其他快递。<br>
+                    顺丰、圆通无法配送的区域，将根据实际情况给您安排EMS。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="shsj">收货时间</p>
+                <p class="service-body-content">
+                    因所在地区不同而略有差异。我们力争以最快的时间将商品送达您手中。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="pssj">配送时间解释</p>
+                <p class="service-body-content">
+                    订单一般在1-2天内可以完成出库、发货、配送。<br>
+                    配送时限是从订单状态处理到正在送货次日开始计时，<br>
+                    一般来说，不同的配送方式会有不同的配送时限。<br>
+                    为了不影响您选购商品的配送速度，请您提供详细、<br>
+                    正确的联系方式和送货地址，并请特别注明您可以收货的时间。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="zysx">注意事项</p>
+                <p class="service-body-content">
+                    如遇交通管制、天气、停电、网络故障、节假日、周年庆、双十一等因素影响，造成某些订单不能及时处理、送货延迟或不能送货，我们将为您持续跟进配送服务，其间带来的不便之处敬请谅解。<br>
+
+                    如果您留的送货地址为单位地址，如遇到国家法定假日，无特殊说明则送货期限顺延。<br>
+
+                    偏远地区和县级以下地区，配送时限不稳定，前后浮动2-3天。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="qszy">签收注意事项</p>
+                <p class="service-body-content">
+                    如果外包装破损严重，您可选择当面拒收。您对产品的任何疑问和建议，因为快递员并非专业的销售人员，请您及时联系小罐茶客服中心，客服会主动负责地与快递公司进行交涉，妥善处理，维护您利益。<br>
+                    当您开箱后如出现商品缺少、配送错误、内包装破损、质量问题等情况时，请联系小罐茶客服中心登记确认退换货。<br>
+                    如您在下单时选择开发票，但未收到发票，请与小罐茶客服中心联系为您补开发票。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id='jssm'>拒收说明</p>
+                <p class="service-body-content">
+                    商品如在运输途中遭到损害，外包装破损严重，您可当面拒收该商品，并及时联系小罐茶客服中心。
+                </p>
+                <hr>
+            </div>
+            <div class="service-title">
+                <span id="pesfw">配送服务</span>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="thzc">退换货政策</p>
+                <p class="service-body-content">自您收到快递之日起的7天（含7天）内，野嘀为您提供1次无理由退换货。
+                <br>
+                非商品质量原因退换货
+                只要内外包装完好、产品完好无污损，您可以申请无理由退换货（运费自理）。
+                <br>
+                商品质量原因退换货
+                <br>
+                如果我们的产品质量没能让您满意，我们深感抱歉，我们承诺一定会及时改善，退换货产生的运费由我们承担。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="tbsm">特别说明</p>
+                <p class="service-body-content">
+                    退货前请先联系客服，未经确认直接退回的包裹，会影响退换货办理的进行。
+                    为节省您宝贵的时间，且确保退换货包裹安全、快速入库，我们不建议您采用平邮的方式，
+                    请选择快递方式将商品寄回，但我们不支持“到付”寄送。
+
+                    礼包或套装中的商品、赠品若因已使用无法退货，就不再享受购买时的优惠。
+
+                    支持同一规格、同一价位的商品间换货，也支持差价换货。
+
+                    因拍摄灯光、不同显示器色差等问题，可能导致商品图片与实物存在一定的色差，
+                    图片及信息仅供参照，一切以实物为准。
+
+                    当使用优惠券或参加满返活动等优惠购买商品发生退换时，我们将按您所支付的实际金额进行比例换算，
+                    再进行退换货结算（所获得/享受的优惠指：整单商品享受的满额减的金额；单品享受的满额抵用的金额）。
+
+                    退换货申请登记完成以后，请您自行安排退换货的寄送，小罐茶收货地址为
+                    北京市朝阳区东八里庄陈家林九号院华腾世纪总部公园C座7层担。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="tkfs">退款方式</p>
+                <p class="service-body-content">
+                   若订单交易成功，我们按照“支付原卡退回”的原则，将订单金额回退至您支付时的银行卡或会员账号。
+                    若通过银行汇款方式支付的订单，我们核对完汇款银行账号及订单信息后，按照原汇款银行账号进行退款处理。
+
+                    如果所支付的订单中含有非现金部分（如礼品卡、积分等），在退款时，
+                    非现金部分不能折现，非现金部分将返回原抵扣账号。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="pssj">配送时间解释</p>
+                <p class="service-body-content">
+                    订单一般在1-2天内可以完成出库、发货、配送。<br>
+                    配送时限是从订单状态处理到正在送货次日开始计时，<br>
+                    一般来说，不同的配送方式会有不同的配送时限。<br>
+                    为了不影响您选购商品的配送速度，请您提供详细、<br>
+                    正确的联系方式和送货地址，并请特别注明您可以收货的时间。
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="thzq">退换货周期</p>
+                <p class="service-body-content">
+                    一般来说，退货周期由订单支付方式决定。如有任何疑问，请联系野嘀热线：400-619-6922
+                </p>
+                <hr>
+            </div>
+            <div class="service-body">
+                <p class="service-body-title" id="thyf">退换货运费规则</p>
+                <p class="service-body-content">
+                    由于商品质量问题，产生退货或换货情况，您将商品寄回时请将发票附于包裹内，小罐茶将根据运单实际金额进行报销。因暂不支持运费到付业务，请您先垫付运费，货到后我们会给您返还运费。
+
+                    非质量问题造成的退换货，运费需由客户承担。
+                </p>
+                <hr>
+            </div>
+
+        </div>
+    </div>
+ 
+    <nav class="navbar navbar-fixed-rigth navbar-collapse collapse right-navbar animated">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a class="title" href="#shfw">售后服务</a></li>
+            <li><a href="#psfw">配送范围</a></li>
+            <li><a href="#psfs">配送方式</a></li>
+            <li><a href="#shsj">收货时间</a></li>
+            <li><a href="#pssj">配送时间解释</a></li>
+            <li><a href="#zysx">注意事项</a></li>
+            <li><a href="#qszy">签收注意事项</a></li>
+            <li><a href="#jssm">拒收说明</a></li>
+            <li><a class="title" href="#pesfw">配送服务</a></li>
+            <li><a href="#thzc">退换货政策</a></li>
+            <li><a href="#tbsm">特别说明</a></li>
+            <li><a href="#tkfs">退款方式</a></li>
+            <li><a href="#thzq">退换货周期</a></li>
+            <li><a href="#thyf">退换货运费规则</a></li>
+        </ul>
+    </nav>
+    <button type="button" class="navbar-toggle" data-toggle="collapse">
+        <div class="rollBtn">
+            <span class="glyphicon glyphicon-menu-left"></span>
+        </div>
+    </button>
+    <div class="shade"></div>
+    {{include file='public/footer' /}}
+</body>
+{{include file='public/foot' /}}
+
+</html>
+<script type="text/javascript">
+    $('body').scrollspy({ target: '.right-navbar' })
+    // 右边小箭头
+    $(".rollBtn").click(function(){
+        $(".right-navbar").show().removeClass('fadeOutRight').addClass('fadeInRight');
+        $(".shade").show();
+    });
+    $(".shade").click(function(){
+        $(this).hide();
+        $(".right-navbar").removeClass("fadeInRight").addClass('fadeOutRight');
+    });
+
+
+</script>
+
+

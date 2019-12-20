@@ -1,0 +1,116 @@
+{{include file='public/head' /}}
+<link rel="stylesheet" href="{{$Think.__MY__STATIC__}}/admin/css/admin.css" />
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">后台设置</div>
+          <div class="layui-card-body" pad15>
+            <form class="layui-form">
+            <div class="layui-form" wid100 lay-filter="">
+              <div class="layui-form-item">
+                <label class="layui-form-label">首页名称</label>
+                <div class="layui-input-block">
+                  <input type="text" name="sitename" value="{{$config['sitename']['value']}}" class="layui-input">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">网站域名</label>
+                <div class="layui-input-block">
+                  <input type="text" name="domain" lay-verify="url" value="{{$config['domain']['value']}}" class="layui-input">
+                </div>
+              </div>
+              <!-- <div class="layui-form-item">
+                <label class="layui-form-label">缓存时间</label>
+                <div class="layui-input-inline" style="width: 80px;">
+                  <input type="text" name="cache" lay-verify="number" value="0" class="layui-input">
+                </div>
+                <div class="layui-input-inline layui-input-company">分钟</div>
+                <div class="layui-form-mid layui-word-aux">本地开发一般推荐设置为 0，线上环境建议设置为 10。</div>
+              </div> -->
+              <div class="layui-form-item">
+                <label class="layui-form-label">上传图片类型</label>
+                <div class="layui-input-block">
+                  <input type="text" name="imgType" value="{{$config['imgType']['value']}}" class="layui-input">
+                  <span class="layui-word-aux layui-inline" style="margin-top: 5px;">{{$config['imgType']['describe']}}</span>
+                </div>
+              </div>     
+              <div class="layui-form-item">
+                <label class="layui-form-label">图片上传大小</label>
+                <div class="layui-input-inline" style="width: 130px;">
+                  <input type="text" name="uploadImgSize" lay-verify="number" value="{{$config['uploadImgSize']['value']}}" class="layui-input">
+                  <span class="layui-word-aux layui-inline" style="margin-top: 5px;">{{$config['uploadImgSize']['describe']}}</span>
+                </div>
+                <div class="layui-input-inline layui-input-company">KB</div>
+                <div class="layui-form-mid layui-word-aux">提示：1 M = 1024 KB</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">文件上传类型</label>
+                <div class="layui-input-block">
+                  <input type="text" name="fileType" value="{{$config['fileType']['value']}}" class="layui-input">
+                  <span class="layui-word-aux layui-inline" style="margin-top: 5px;">{{$config['fileType']['describe']}}</span>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">文件上传大小</label>
+                <div class="layui-input-inline" style="width: 130px;">
+                  <input type="text" name="uploadFileSize" lay-verify="number" value="{{$config['uploadFileSize']['value']}}" class="layui-input">
+                  <span class="layui-word-aux layui-inline" style="margin-top: 5px;">{{$config['uploadFileSize']['describe']}}</span>
+                </div>
+                <div class="layui-input-inline layui-input-company">KB</div>
+                <div class="layui-form-mid layui-word-aux">提示：1 M = 1024 KB</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">视频上传类型</label>
+                <div class="layui-input-block">
+                  <input type="text" name="videoType" value="{{$config['videoType']['value']}}" class="layui-input">
+                  <span class="layui-word-aux layui-inline" style="margin-top: 5px;">{{$config['videoType']['describe']}}</span>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">视频上传大小</label>
+                <div class="layui-input-inline" style="width: 130px;">
+                  <input type="text" name="uploadVideoSize" lay-verify="number" value="{{$config['uploadVideoSize']['value']}}" class="layui-input">
+                  <span class="layui-word-aux layui-inline" style="margin-top: 5px;">{{$config['uploadVideoSize']['describe']}}</span>
+                </div>
+                <div class="layui-input-inline layui-input-company">KB</div>
+                <div class="layui-form-mid layui-word-aux">提示：1 M = 1024 KB</div>
+              </div>          
+              <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">版权信息</label>
+                <div class="layui-input-block">
+                  <textarea name="copyright" class="layui-textarea">{{$config['copyright']['value']}}</textarea>
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button type="button" class="layui-btn layui-btn" lay-submit lay-filter="admin-website-add">确认保存</button>
+                </div>
+              </div>
+            </div>
+            </form>         
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{{include file='public/foot' /}}
+  <script>
+layui.config({
+    base : "{{:__MY_PUBLIC_URL__}}static/admin/js/extend/"
+  }).use(['formSub'],function(){
+  var formSub=layui.formSub;
+  formSub.sub({
+    subBtnName:"admin-website-add",
+    refresh:{
+      type:0//刷新本页面
+    },  
+    msg:"编辑成功"
+  });
+})
+
+  </script>
+</body>
+</html>

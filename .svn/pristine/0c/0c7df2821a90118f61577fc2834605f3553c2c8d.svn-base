@@ -1,0 +1,44 @@
+{{include file='public/head' /}}
+<body class="childrenBody">
+<form class="layui-form">
+	<blockquote class="layui-elem-quote quoteBox">
+		<div class="layui-inline">
+			<a class="layui-btn del_btn">删除10天前日志</a>
+		</div>
+	</blockquote>
+	<table id="logList" lay-filter="logList" data-url="{{:url('getlogList')}}" del-url="{{:url('logDel')}}"></table>
+</form>
+{{include file='public/foot' /}}
+<script type="text/javascript">
+
+layui.config({
+        base : '{{:__MY__STATIC__}}/admin/js/extend/'
+    }).extend({
+        tableOp:'tableOp'
+    }).use(['tableOp','formSub'],function(){
+    var formSub=layui.formSub,
+        tableOp = layui.tableOp;
+    
+    //日志列表table
+    var option={
+        table:{
+            elem:"#logList",
+            url:$("#logList").attr('data-url'),
+            //page:false,
+        },
+        colsName:"admin-log-index",
+    };
+    tableOp.init(option,function(tableIns){});
+
+    //删除按钮
+    $(".del_btn").click(function(){
+        formSub.delBtn({
+            key:"日志列表",
+            url:$("#logList").attr('del-url'),
+        });
+    });
+});
+
+</script>
+</body>
+</html>

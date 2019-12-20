@@ -1,0 +1,62 @@
+{{include file='public/head' /}}
+<body class="childrenBody">
+<form class="layui-form" style="width:80%;">
+	<div class="layui-form-item layui-row layui-col-xs12">
+		<label class="layui-form-label">栏目名称</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" name="name" lay-verify="required" value="{{$column_info['name']}}">
+		</div>
+	</div>
+	<div class="layui-form-item layui-row layui-col-xs12">
+		<label class="layui-form-label">控制器</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" name="control" lay-verify="required" value="{{$column_info['control']}}">
+		</div>
+	</div>
+	<div class="layui-form-item layui-row layui-col-xs12">
+		<label class="layui-form-label">方法</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" name="action" lay-verify="required" value="{{$column_info['action']}}">
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">排序</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" lay-verify="required" style="width:100px;" name="sort" value="{{$column_info['sort']}}">
+		</div>
+	</div>
+	<div class="layui-form-item layui-row layui-col-xs12">
+		<label class="layui-form-label">打开新页面</label>
+		<div class="layui-input-block">
+			<input type="checkbox" name="is_new" lay-filter="state" lay-skin="switch" lay-text="是|否" value="{{$column_info['is_new']}}" {{php}} if($column_info['is_new']==1) echo 'checked'; {{/php}}>
+		</div>
+	</div>
+	<input type="hidden" name='id' value="{{$column_info['id']}}">
+
+	<div class="layui-form-item layui-row layui-col-xs12">
+		<div class="layui-input-block">
+			<button type="button"class="layui-btn layui-btn-sm" lay-submit lay-filter="admin-columnedit-sub">立即修改</button>
+			<button type="reset" class="layui-btn layui-btn-sm layui-btn-primary">重置</button>
+		</div>
+	</div>
+</form>
+
+{{include file='public/foot' /}}
+<script type="text/javascript">
+//添加
+layui.config({
+		base : '{{:__MY_PUBLIC_URL__}}static/admin/js/extend/'
+	}).use(['formSub'],function(){
+	var formSub=layui.formSub;
+	//添加
+	formSub.sub({
+		subBtnName:'admin-columnedit-sub',
+		msg:"修改成功"
+	});
+})
+
+
+</script>
+</body>
+</html>
+

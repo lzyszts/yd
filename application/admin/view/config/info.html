@@ -1,0 +1,60 @@
+{{include file='public/head' /}}
+<link rel="stylesheet" href="{{$Think.__MY__STATIC__}}/admin/css/admin.css" />
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">前台信息设置</div>
+          <div class="layui-card-body" pad15>
+            <form class="layui-form">
+              <div class="layui-form" wid100 lay-filter="">
+                <div class="layui-form-item">
+                  <label class="layui-form-label">客服电话</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="phone" value="{{$config['phone']['value']}}" class="layui-input" lay-verify="required">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">服务时间</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="workTime" value="{{$config['workTime']['value']}}" class="layui-input" lay-verify="required">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <label class="layui-form-label">客服QQ</label>
+                  <div class="layui-input-block">
+                    <input type="text" name="qq" value="{{$config['qq']['value']}}" class="layui-input" lay-verify="required">
+                  </div>
+                </div>
+                <div class="layui-form-item">
+                  <div class="layui-input-block">
+                    <button type="button" class="layui-btn layui-btn" lay-submit lay-filter="admin-info-add">确认保存</button>
+                  </div>
+                </div>
+              </div>
+            </form>         
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{{include file='public/foot' /}}
+  <script>
+layui.config({
+    base : "{{:__MY_PUBLIC_URL__}}static/admin/js/extend/"
+  }).use(['formSub'],function(){
+  var formSub=layui.formSub;
+  formSub.sub({
+    subBtnName:"admin-info-add",
+    refresh:{
+      type:0//刷新本页面
+    },  
+    msg:"编辑成功"
+  });
+})
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+@media (max-width: 992px) {
+	/**nav变两行问题**/
+	.fluid{
+		width: 100%;
+	}
+	/*about页面的公司介绍*/
+	.about-content {
+	    padding: 0;
+	}
+	.about-content p{
+	    font-size: 16px;
+	}
+}
+@media (max-width: 768px) {
+	/**通用**/
+	.font-17{
+		font-size: 1.4rem;
+	}
+	.font-20{
+		font-size: 1.5rem;
+	}
+	.font-24{
+		font-size: 1.7rem;
+	}
+	.font-30{
+		font-size: 2.5rem;
+	}
+	.font-36{
+		font-size: 3rem;
+	}
+	/**banner**/
+	.banner{
+		height: 200px;
+	}
+	/**顶部导航**/
+	.topnav{
+		background: none;
+	}
+	.topnav .navbar-header{
+		background: #846638;
+	}
+	.topnav .nav-list{
+		background: #000;
+		opacity: 0.9;
+	}
+	.topnav .nav{
+		text-align: center;
+		padding:0 9rem;
+	}
+	.topnav .nav a{
+		color: #fff8dd;
+	}
+	.topnav li{
+		border-bottom:1px solid #222222;
+		padding: .1rem 0;
+	}
+	.topnav .active{
+		background: #846638;
+		opacity: 0.6;
+	}
+	.topnav ul li::before{
+		content: "";
+		position: absolute;
+		top: -7px;
+		left: 0;
+		width: 0;
+		height: 100%;
+		border-bottom:none;
+		transition: 0.2s all linear;
+	}
+	/**首页**/
+	.video .video-des{
+		padding-top: 1rem;
+	}
+	.video h1{
+		font-size: 2.2rem;
+	}
+	.slide-pc{
+		display: none;
+	}
+	.slide-phone{
+		display: block !important;
+	}
+	.video .video-main{
+		padding: 1rem 0 0 0;
+	}
+	.video .video-main .v{
+		padding-top: 1rem;
+	}
+	.video {
+	    padding-bottom: 3rem;
+	}
+	
+	/**视频区**/
+ 	.video-main a{
+ 		padding-top:1rem;
+ 	}
+ 	/**底部**/
+ 	.footer-top img{
+ 		display: none;
+ 	}
+ 	.footer-link-left-links{
+ 		margin: 0;
+ 	}
+ 	.footer-link-left-links a{
+ 		font-size: 1.5rem;
+ 		margin: 10px !important;
+ 	}
+ 	.footer-link-left p{
+ 		margin: .5rem 0 0 .5rem !important;
+ 	}
+ 	.footer-link-left-copyright{
+ 		display: none;
+ 	}
+ 	.footer-link-right{
+ 		padding:.7rem .5rem !important;
+ 	}
+ 	.footer-link-right img{
+ 		width:80%;
+ 	}
+ 	.footer-link-left{
+ 		padding: 2rem 0 1rem 0;
+ 	}
+ 	.footer-link-right p{
+ 		font-size: 1.6rem;
+ 	}
+ 	/**about**/
+	.about-us{
+		padding: 20px 0;
+	}
+ 	.about-1{
+ 		display: none;
+ 	}
+	.contact-us{
+		height:300px;
+		padding: 50px 0;
+	}
+	.join .line4 .fm{
+		height: auto;
+	}
+	.vision-us{
+		min-height: 270px;
+	}
+	.vision-us img{
+		width: 80%;
+	}
+	.vision-us .row .vision-title {
+	    font-size: 1.5rem;
+	    margin-top: 30px;
+	}
+	.vision-us .row .vision-content {
+	    font-size: 1rem;
+	}
+	.contact-content img{
+		width: 50%;
+	}
+	.contact-title {
+	    margin: 1rem 0 2rem 0;
+	}
+	/**pruduct**/
+	.product-nav li{
+		float: left;
+	}
+	.product-block {
+	    min-height: 27rem;
+	    padding: 3rem 1rem;
+	}
+	.product-title{
+		margin-top: 3rem;
+	}
+	.product-des{
+		font-size: 1.3rem;
+	}
+	/**service**/
+	.right-navbar{
+		top: 50px;
+	}
+	.service-title{
+		padding-bottom: 3rem;
+	}
+	.service-body-title{
+		font-size: 2.5rem;
+	}
+	.service-content hr{
+		margin: 2rem 0 3rem 0;
+	}
+	/**news**/
+	.news .news-content{
+		display: none;
+	}
+	.news .pic{
+		padding-left: 0;
+		padding-right: 0;
+		height: 11rem;
+    	max-width: 16rem;
+	}
+	.news img{
+		width: 100%;
+		height: 100%;
+	}
+	.news .jump{
+		width: 8rem;
+	    height: 4rem;
+	    line-height: 4rem;
+	    margin-top: .5rem;
+	}
+	.news .list{
+		height: 11rem;
+		padding-left: 2rem;
+		padding-right: 0;
+	}
+	.news h3{
+		height: 3.5rem;
+		margin-top:0; 
+		overflow: hidden;
+  		display: -webkit-box;
+		text-overflow: ellipsis;
+  		-webkit-line-clamp: 2;
+  		-webkit-box-orient: vertical;
+	}
+	.news .time{
+		margin-bottom:.5rem;
+		font-size: 1rem;
+	}
+	/**pre**/
+	.pre .time{
+		display: none;
+	}
+	.pre .title{
+		padding: 3rem 0 2rem 0;
+	}
+
+	/**join**/
+	.join h1 {
+	    padding: 2.2rem 0 1.7rem 0;
+	}
+	.join .line2{
+		padding-bottom: 3rem;
+	}
+	.join .line2 .title{
+		padding-top: 3.7rem;
+		font-size: 2.1rem;
+	}
+	.join .line2 .join-content{
+		font-size: 1.2rem;
+		padding-bottom: 1rem;
+	}
+	.join .line2 img{
+		max-width: 7rem;
+	}
+	.join .line3 h1 {
+	    padding: 2rem 0 1rem 0;
+	}
+	.join .line3 .join-des{
+		padding: 2.3rem 2rem;
+	}
+	.join .line4 h1 {
+	    padding: 2rem 0 0 0;
+	}
+	.join .line4 .join-hf {
+	    padding-bottom: 2rem;
+	    font-size: 1.4rem;
+	}
+	.join .line4 .fm{
+		padding: 3rem 1rem;
+	}
+}
+
+@media (max-width: 340px) {
+	.footer-link-right p{
+		font-size: 1.4rem;
+	}
+	/**new**/
+	.news .pic{
+		height: 9rem;
+    	width: 11rem;
+	}
+	.news h3{
+		font-size: 1.4rem;
+	}
+	.news .time {
+	    margin-bottom: 0;
+	}
+	.news .jump {
+	    width: 6rem;
+	    height: 3rem;
+	    line-height: 3rem;
+	    margin-top: .5rem;
+	}
+}

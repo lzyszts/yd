@@ -1,0 +1,98 @@
+{{include file='public/head' /}}
+<link rel="stylesheet" href="{{$Think.__MY__STATIC__}}/common/webuploader/css/webuploader.css" />
+<body class="childrenBody">
+<form class="layui-form ">
+	<div class="layui-form-item">
+		<label class="layui-form-label">标题</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" lay-verify="required" placeholder="请输入名称" name="download_name" value="{{$video_info['download_name']}}" />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">分组标识</label>
+		<div class="layui-input-block">
+			{{:createConfigSelect('web.videoType','type',false,'video')}}
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">缩略图</label>
+		<div class="layui-upload">
+			<div id="logo">上传图片</div>
+			<span class="layui-word-aux layui-inline" style="margin:5px 0 0 105px;">建议尺寸：390*220</span>
+		</div> 
+	</div>
+
+	<div class="layui-form-item">
+		<label class="layui-form-label">视频</label>
+		<div class="layui-input-block">
+			<div class="layui-upload">
+				<div id="file">选择文件</div>
+			</div> 
+		</div>	
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">排序</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" lay-verify="required" value="{{$video_info['sort']}}" style="width:100px;" name="sort" />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">描述</label>
+		<div class="layui-input-block">
+			<textarea class="layui-textarea" name="describe">{{$video_info['describe']}}</textarea>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button type="button"class="layui-btn layui-btn" lay-submit lay-filter="admin-downloadedit-sub">提交</button>
+			<button type="reset" class="layui-btn layui-btn layui-btn-primary">取消</button>
+		</div>
+	</div>
+</form>
+</body>
+{{include file='public/foot' /}}
+<script type="text/javascript" src="{{$Think.__MY__STATIC__}}/common/webuploader/dist/webuploader.js"></script>
+<script type="text/javascript">
+layui.config({
+        base : '{{:__MY_PUBLIC_URL__}}static/admin/js/extend/'
+}).extend({
+	uploadOp:'uploadOp'
+}).use(['formSub','uploadOp'],function(){
+	var formSub=layui.formSub,
+	uploadOp=layui.uploadOp;
+	//编辑图片
+	uploadOp.webuploadImg({
+		type:"edit",
+		id:"{{:$video_info['logo_id']}}",
+		url:"{{:$video_info['url']}}",//图全地址
+		realName:"{{:$video_info['real_name']}}",//图片的真实名
+		uploadSubName:'logo_id', //上传成功后赋值的隐藏域的name
+		imgW:392,
+		imgH:220,
+		//webupload的配置项
+		webuploadOption:{
+			pick:$("#logo"),
+			server:"{{:url('uploadVideoLogo')}}"
+		}
+	});
+	//编辑文件
+	uploadOp.webuploadFile({
+		type:"edit",
+		fileType:'video',	//验证类型为video
+		id:"{{$video_info['file_id']}}",//编辑文件的id
+		realName:"{{:$video_info['file_name']}}",//视频的真实名
+		uploadSubName:"file_id",//上传成功后赋值的隐藏域的name
+		webuploadOption:{
+			pick: $("#file"), //上传按钮id
+	  		server:"{{:url('uploadVideo')}}",
+		}
+	});
+
+	//提交
+	formSub.sub({
+		subBtnName:'admin-downloadedit-sub',
+		msg:'修改成功',
+	});
+})
+</script>
+</html>

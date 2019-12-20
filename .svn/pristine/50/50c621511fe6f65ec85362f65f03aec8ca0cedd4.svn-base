@@ -1,0 +1,88 @@
+{{include file='public/head' /}}
+<link rel="stylesheet" href="{{$Think.__MY__STATIC__}}/common/webuploader/css/webuploader.css" />
+<body class="childrenBody">
+<form class="layui-form ">
+	<div class="layui-form-item">
+		<label class="layui-form-label">链接名称</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" lay-verify="required" placeholder="请输入网站名称" name="link_name"/>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">分组标识</label>
+		<div class="layui-input-block">
+			{{:createConfigSelect('web.linkType','type')}}
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">图片</label>
+		<div class="layui-upload">
+			<div id="thumb">选择图片</div>
+		</div> 
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">网站地址</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" lay-verify="required" placeholder="请输入网站地址" name="url"/>
+			<div class="layui-form-mid layui-word-aux">例如：http://www.baidu.com</div>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">icon</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" name="icon" placeholder="填写class名,例如：icon-xiazai">
+			<span class="layui-word-aux layui-inline" style="margin-top: 5px;">示例：<a href="{{:$Think.__MY__STATIC__.'/common/font/demo_index.html'}}" target="_blank" style="color:#0014ff;">{{:$Think.__MY__STATIC__}}/common/font/demo_index.html</a></span>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">排序</label>
+		<div class="layui-input-block">
+			<input type="text" class="layui-input" lay-verify="required" value="0" style="width:100px;" name="sort" />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">新页面</label>
+		<div class="layui-input-block">
+			<input type="checkbox" class="layui-input" lay-text="是|否" lay-skin="switch" value='0' name="is_new" />
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<label class="layui-form-label">链接描述</label>
+		<div class="layui-input-block">
+			<textarea class="layui-textarea" name="describe"></textarea>
+		</div>
+	</div>
+	<div class="layui-form-item">
+		<div class="layui-input-block">
+			<button type="button"class="layui-btn layui-btn" lay-submit lay-filter="admin-linkadd-sub">提交</button>
+			<button type="reset" class="layui-btn layui-btn layui-btn-primary">重置</button>
+		</div>
+	</div>
+</form>
+</body>
+{{include file='public/foot' /}}
+<script type="text/javascript" src="{{$Think.__MY__STATIC__}}/common/webuploader/dist/webuploader.js"></script>
+<script type="text/javascript">
+layui.config({
+    base : '{{:__MY_PUBLIC_URL__}}static/admin/js/extend/'
+}).extend({
+	uploadOp:'uploadOp'
+}).use(['formSub','uploadOp'],function(){
+	var formSub=layui.formSub,
+	uploadOp=layui.uploadOp;
+	//上传图片
+	uploadOp.webuploadImg({
+		uploadSubName:'thumb_id', //上传成功后赋值的隐藏域的name	
+		//webupload的配置项
+		webuploadOption:{
+			pick:$("#thumb"),	//上传按钮对象
+			server:"{{:url('uploadLogo')}}"
+		}
+	});
+	//提交
+	formSub.sub({
+		subBtnName:'admin-linkadd-sub',
+	});
+})
+</script>
+</html>

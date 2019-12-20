@@ -1,0 +1,68 @@
+{{include file='public/head' /}}
+<link rel="stylesheet" href="{{$Think.__MY__STATIC__}}/admin/css/admin.css" />
+<body>
+  <div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card">
+          <div class="layui-card-header">邮件服务</div>
+          <div class="layui-card-body">
+            <div class="layui-form" wid100 lay-filter="">
+              <div class="layui-form-item">
+                <label class="layui-form-label">SMTP服务器</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="mailSmtpServer" value="{{:$config['mailSmtpServer']['value']}}" class="layui-input" lay-verify="required">
+                </div>
+                <div class="layui-form-mid layui-word-aux">如：smtp.163.com</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">SMTP端口号</label>
+                <div class="layui-input-inline" style="width: 80px;">
+                  <input type="text" name="mailSmtpPort" lay-verify="mailSmtpPort" value="{{:$config['mailSmtpPort']['value']}}" class="layui-input" lay-verify="required">
+                </div>
+                <div class="layui-form-mid layui-word-aux">一般为 25 或 465</div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">发件人邮箱</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="mailSendUsername" value="{{:$config['mailSendUsername']['value']}}" lay-verify="email" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">发件人昵称</label>
+                <div class="layui-input-inline">
+                  <input type="text" name="mailSendName" value="{{:$config['mailSendName']['value']}}" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <label class="layui-form-label">邮箱登入密码</label>
+                <div class="layui-input-inline">
+                  <input type="password" name="mailSendPwd" value="{{:$config['mailSendPwd']['value']}}" autocomplete="off" class="layui-input" lay-verify="required">
+                </div>
+              </div>
+              <div class="layui-form-item">
+                <div class="layui-input-block">
+                  <button class="layui-btn" lay-submit lay-filter="admin-config-sub">确认保存</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{include file='public/foot' /}}
+  <script>
+layui.config({
+        base : '{{:__MY_PUBLIC_URL__}}static/admin/js/extend/'
+    }).use(['formSub'],function(){
+    var formSub = layui.formSub;
+    formSub.sub({
+        subBtnName:'admin-config-sub',
+        msg:'保存成功'
+    });
+})
+
+  </script>
+</body>
+</html>

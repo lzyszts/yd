@@ -1,0 +1,68 @@
+{{include file='public/head' /}}
+<body class="childrenBody">
+	<blockquote class="layui-elem-quote quoteBox">
+		<form class="layui-form">
+			<div class="layui-inline">
+				<a class="layui-btn add_btn">添加视频</a>
+			</div>
+		</form>
+	</blockquote>
+	<table id="videoList" lay-filter="videoList" data-url="{{:url('getVideoList')}}" add-url="{{:url('videoAdd')}}" edit-url="{{:url('videoEdit')}}" del-url="{{:url('videoDel')}}" switch-url="{{:url('videoSwitch')}}"></table>
+	<!--操作-->
+	<script type="text/html" id="bar">
+		<a class="layui-btn layui-btn-sm" lay-event="edit">编辑</a>
+		<a class="layui-btn layui-btn-sm layui-btn-danger" lay-event="del">删除</a>
+	</script>
+</body>
+{{include file='public/foot' /}}
+<script type="text/javascript">
+layui.config({
+    base : '{{:__MY_PUBLIC_URL__}}static/admin/js/extend/'
+}).extend({
+     tableOp:'tableOp'
+}).use(['tableOp','formSub'],function(){
+	var tableOp=layui.tableOp,
+    formSub=layui.formSub;
+     //分类列表table
+    var option={
+        table:{
+            elem:"#videoList",
+            url:$("#videoList").attr('data-url'),
+            //page:false,
+            // 数据加载完后再渲染图片
+            done:function(){
+                layer.photos({
+                  photos: '.layer-photos'
+                  ,anim: 5 
+                });
+            }
+        },
+        colsName:"admin-config-download",
+    };
+    tableOp.init(option,function(tableIns){});
+    //添加
+    $(".add_btn").click(function(){
+        formSub.addBtn({
+            title:"添加视频",
+            url:$("#videoList").attr('add-url'),
+        });
+    })
+    //编辑删除
+    formSub.tableTool({
+        tableFilterName:"videoList",
+        editUrl:$("#videoList").attr('edit-url'),
+        delUrl:$("#videoList").attr('del-url'),
+        key:"视频"
+    });
+    //状态切换
+    formSub.switch({
+        switchBtnName:"admin-download-state",
+        url:$("#videoList").attr('switch-url')
+    });
+});
+
+
+
+
+</script>
+</html>

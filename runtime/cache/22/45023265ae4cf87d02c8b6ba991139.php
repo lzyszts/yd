@@ -1,0 +1,4 @@
+<?php
+//000000000000
+ exit();?>
+think_serialize:a:17:{s:8:"sitename";s:36:"四川野嘀食品有限责任公司";s:6:"domain";s:22:"http://kuaidanshou.com";s:7:"imgType";s:16:"png,gif,jpeg,jpg";s:13:"uploadImgSize";s:4:"3072";s:8:"fileType";s:3:"exe";s:14:"uploadFileSize";s:5:"10240";s:9:"copyright";s:58:"copyright @ 2019-2029 野嘀食品(蜀ICP备19026702号-1)";s:14:"mailSmtpServer";s:11:"smtp.qq.com";s:12:"mailSmtpPort";s:3:"465";s:16:"mailSendUsername";s:17:"3626032862@qq.com";s:12:"mailSendName";s:6:"野嘀";s:11:"mailSendPwd";s:16:"bssoieypkcpkbgec";s:5:"phone";s:13:"400-1858-0011";s:8:"workTime";s:23:"8：00AM ～ 23：00 PM";s:2:"qq";s:9:"362603286";s:9:"videoType";s:3:"mp4";s:15:"uploadVideoSize";s:5:"40960";}

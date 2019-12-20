@@ -1,0 +1,13 @@
+//编辑器
+var ue = UE.getEditor('content',{
+	serverUrl:config.serverUrl,
+});
+
+//去掉拉伸框
+ue.ready(function() {
+  var id = ue.ui.id;
+  var style = document.createElement('style');
+  style.innerHTML = '#{id}_imagescale,#{id}_imagescale_cover{display:none !important;}'.replace(/{id}/g, id);
+  document.head.append(style);
+});
+

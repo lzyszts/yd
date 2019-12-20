@@ -1,0 +1,2 @@
+<script type="text/javascript" src="{{$Think.__MY__STATIC__}}/common/bootstrap/js/bootstrap.min.js"></script><script type="text/javascript" src="{{$Think.__MY__STATIC__}}/common/swiper/js/swiper.js"></script>
+<script type="text/javascript" src="{{$Think.__MY__STATIC__}}/home/js/public.js"></script>

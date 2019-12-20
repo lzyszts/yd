@@ -1,0 +1,77 @@
+{{include file='public/head' /}}
+<body>
+    {{include file='public/nav' /}}
+    <!-- slide -->
+    <div class="slide color-bank slide-pc">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {{foreach $slide as $v}}
+                {{if($v['type']=='slide')}}
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="{{$v['url']}}">
+                    </a>
+                </div>
+                {{/if}}
+                {{/foreach}}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div> 
+    <!-- slide-phone -->
+    <div class="slide color-bank slide-phone" style="display: none;">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                {{foreach $slide as $v}}
+                {{if($v['type']=='slide-phone')}}
+                <div class="swiper-slide">
+                    <a href="#">
+                        <img src="{{$v['url']}}">
+                    </a>
+                </div>
+                {{/if}}
+                {{/foreach}}
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div> 
+    <!-- video -->
+    <div class="video color-bank1">
+        <div class="container">
+            <div class="row video-des">
+                <h1 class="font-y">野嘀寻味记</h1>
+                <p class="font-sy font-17">我们一直在路上为您寻找最美的味道</p>
+            </div>
+            <div class="row video-main">
+              {{foreach $video as $v}}
+              <div class="col-lg-4 col-sm-4 col-xs-12">
+                <a href="{{:url('video',['id'=>$v['id']])}}">
+                    <img src="{{:$v['img_url']}}" class="video-bg">
+                    <div class="video-play">
+                        <img src="{{$Think.__MY__STATIC__}}/home/image/play.png">
+                    </div>
+                    <div class="video-title">
+                        <div class="font-sy font-17">{{:date('Y/m/d',$v['add_time'])}}</div>
+                        <div class="font-y font-20">{{:$v['download_name']}}</div>
+                    </div>
+                </a>
+              </div>
+              {{/foreach}}
+            </div>
+        </div> 
+    </div>
+    {{include file='public/footer' /}}
+
+</body>
+{{include file='public/foot' /}}
+
+<script>
+    var mySwiper = new Swiper('.swiper-container', {
+        autoplay: true,//可选选项，自动滑动
+        pagination: {
+            el: '.swiper-pagination',
+            clickable:true,
+        },
+    })
+</script>
+</html>

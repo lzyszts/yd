@@ -1,0 +1,407 @@
+/**
+ * 上传单张图片
+ * 1、按钮上的upload_url设置为上传接口地址
+ * 
+//编辑图片
+uploadOp.img({
+	type:"edit",		//编辑时加入
+	id:"{{$download_info['logo_id']}}",//编辑图片的id
+	imgSrc:"{{$Think.UPLOAD_URL.$download_info['src']}}",//缩略图全地址
+	realName:"{{:$download_info['real_name']}}",//图片的真实名
+	img:{	//上传图片则只需要这里面
+		elem:$("#logo"),	//上传按钮对象
+		field:'logo',	//上传后服务器接收图片的name
+		size:'{{:app\\server\\Cache::configInit()['uploadImgSize']}}',//图片允许大小
+		uploadSubName:'logo_id', //上传成功后赋值的隐藏域的name
+		imgW:170,	//显示的图片宽
+		imgH:170,	//显示的图片高
+	}
+});
+*/
+//加入上传缩略图框的css
+$(function(){
+	function loadCssCode(code){
+	    var style = document.createElement('style');
+	    style.type = 'text/css';
+	    style.rel = 'stylesheet';
+	    //for Chrome Firefox Opera Safari
+	    style.appendChild(document.createTextNode(code));
+	    //for IE
+	    //style.styleSheet.cssText = code;
+	    var head = document.getElementsByTagName('head')[0];
+	    head.appendChild(style);
+	}
+	var css='.operate {display: block;height: 40px;width: 100%;background: #f4f5f9;}';
+	css+='.operate .check {float: left;margin-left: 11px;height: 18px;padding: 11px 0;width: 60%;position: relative;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;}';
+	css+='.operate .img_del {float: right;margin: 9px 11px 0 0;font-size: 20px !important;cursor: pointer;}';
+	loadCssCode(css);
+});
+
+//上传
+layui.define(["upload","element"],function(exports){
+	var upload=layui.upload,
+		element=layui.element, //webuploader上传进度条条用
+		imgObj;
+	var Up=function(option){
+		//图片配置
+		this.c={};
+		//文件配置
+		this.f={};
+	}
+	//layui单图片上传(不带进度条)
+	Up.prototype.img=function(option,callback)
+	{
+		var _this=this;
+		//初始配置为img类型
+		_this.c.img={
+			accept:'images',
+			size:$.parseJSON($.cookie('config')).uploadImgSize,
+			exts:$.parseJSON($.cookie('config')).imgType.replace(/,/g,'|'), //,替换为|
+		}
+		$.extend(true,_this.c,option);
+		/*************生成HTML*****************/
+		//生成缩略图的html									
+		var html='<div class="layui-form-item layui-row layui-col-xs12 up" style="display:none;">';
+			html+=	'<label class="layui-form-label"></label>';
+			html+=  '<div class="layui-upload-list" style="overflow: hidden;width:'+_this.c.img.imgW+'px;">';
+			html+=  	'<img class="layui-upload-img" id="img_thumb" style="width:'+_this.c.img.imgW+'px;height:'+_this.c.img.imgH+'px;background:#e2e2e2;">';
+			html+= 		'<div class="operate">';
+			html+= 			'<div class="check"></div>';
+			html+= 			'<i class="layui-icon img_del">&#xe640;</i>';
+			html+= 		'</div>';
+			html+= 	'</div>';
+			html+= 	'<input type="hidden" name="'+_this.c.img.uploadSubName+'" id="'+_this.c.img.uploadSubName+'">';
+			html+='</div>';
+		//找到按钮的layui-form-item层级然后加入
+		_this.c.img.elem.parent().parent().after(html);
+		//删除按钮
+		$("body").on("click",".img_del",function(){
+	        layer.confirm('确定删除图片吗？',{icon:3, title:'提示信息'},function(index){
+	            $(".up").hide(400);
+            	$("#"+_this.c.img.uploadSubName).val("");
+            	layer.close(index);
+	        });
+	    })
+		//如果是编辑页面则先显示出缩略图
+		if(_this.c.type=='edit' && _this.c.realName!=="")
+		{
+			$(".up").show();
+		    $('#img_thumb').attr('src',_this.c.imgSrc);
+		    $(".operate .check").html(_this.c.real_name);
+		    $("#"+_this.c.img.uploadSubName).val(_this.c.id);
+		}
+	    /**************上传配置*****************/
+		//加入上传接口地址
+		_this.c.img.url=_this.c.img.elem.attr('upload-url');
+		//上传后取图片对象
+		_this.c.img.before = function(obj){
+			imgObj=obj;
+		};
+		//上传成功后操作
+		_this.c.img.done = function(res){
+			//如果上传有错误
+			if(res.code == -1){
+			    return layer.msg(res.message, {icon: 5});
+			}
+			//上传成功
+			if(res.code == 1)
+			{
+				//上传成功
+			  	imgObj.preview(function(index, file, result){
+			  		$(".up").show();
+				    $('#img_thumb').attr('src', result); //图片链接（base64）
+				    $(".operate .check").html(file.name);
+				    //图片id保存到隐藏域
+				    $("#"+_this.c.img.uploadSubName).val(res.data.id);
+				});
+			}			 
+		};
+		//上传
+		var uploadInst = upload.render(_this.c.img);
+	}
+
+    /**
+	 * webuploader单图片上传(带进度条)
+	 * 必须传入参数
+	 * //上传图片
+		uploadOp.webuploadImg({
+			uploadSubName:'logo_id', //上传成功后赋值的隐藏域的name	
+			//webupload的配置项
+			webuploadOption:{
+				pick:$("#logo"),	//上传按钮对象
+				server:"{{:url('uploadDownloadLogo')}}"
+			}
+		});
+	*/
+	Up.prototype.webuploadImg=function(option,callback){
+		var _this=this;
+		_this.c.imgW = 110;
+		_this.c.imgH = 110;
+		var extensions = $.parseJSON($.cookie('config')).imgType;	  //限制类型
+		var fileSizeLimit = $.parseJSON($.cookie('config')).uploadImgSize * 1024; //限制大小
+		//初始图片类型(读取cookie配置)
+		_this.c.webuploadOption={
+			auto:true,
+			accept:{
+	  			extensions:extensions
+	  		},
+	  		fileSizeLimit:fileSizeLimit
+		}
+		$.extend(true,_this.c,option);
+		/*************生成HTML*****************/
+		//生成缩略图的html	
+		var html ='<div class="layui-progress layui-progress-big progress" lay-filter="progress" lay-showpercent="true" style="width:'+_this.c.imgW+'px;margin-left:110px;display:none;">';
+			html+=	'<div class="layui-progress-bar" lay-percent="0%"></div>';
+			html+='</div>';														
+		    html+='<div class="layui-form-item layui-row layui-col-xs12 up" style="display:none;">';
+			html+=	'<label class="layui-form-label"></label>';
+			html+=  '<div class="layui-upload-list" style="overflow: hidden;width:'+_this.c.imgW+'px;">';
+			html+=  	'<img class="layui-upload-img" id="img_thumb" style="width:'+_this.c.imgW+'px;height:'+_this.c.imgH+'px;background:#e2e2e2;">';
+			html+= 		'<div class="operate">';
+			html+= 			'<div class="check"></div>';
+			html+= 			'<i class="layui-icon img_del">&#xe640;</i>';
+			html+= 		'</div>';
+			html+= 	'</div>';
+			html+= 	'<input type="hidden" name="'+_this.c.uploadSubName+'" id="'+_this.c.uploadSubName+'">';
+			html+='</div>';
+		//找到按钮的layui-form-item层级然后加入
+		_this.c.webuploadOption.pick.parent().parent().after(html);
+		element.render('progress');
+		//删除按钮
+		$("body").on("click",".img_del",function(){
+	        layer.confirm('确定删除图片吗？',{icon:3, title:'提示信息'},function(index){
+	            $(".up").hide(400);
+	            $(".progress").hide(400);
+            	$("#"+_this.c.uploadSubName).val("");
+            	layer.close(index);
+	        });
+	    })
+		//如果是编辑页面则先显示出缩略图(realName保证有图)
+		if(_this.c.type=='edit' && _this.c.realName!=="")
+		{
+			$(".up").show();
+		    $('#img_thumb').attr('src',_this.c.url);
+		    $(".operate .check").html(_this.c.realName);
+		    $("#"+_this.c.uploadSubName).val(_this.c.id);
+		}
+
+		/******************上传配置***************/
+		//上传
+		var uploader = WebUploader.create(_this.c.webuploadOption);
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on( 'uploadProgress', function( file, percentage ) {
+			$(".progress").show();
+			element.progress('progress', percentage.toFixed(2) * 100 + '%');
+		});
+		// 加入队列之前
+		// 清空进度条、清空队列
+		uploader.on('beforeFileQueued', function(error){
+		    $("#"+_this.c.uploadSubName).val("");
+		    element.progress('progress','0%');
+		    $(".progress").hide();
+		    $(".up").hide();
+		    uploader.reset();
+		});
+		// 加入队列后获取base64
+		/*var imgBase64;
+		uploader.on( 'fileQueued', function( file ) {
+		    uploader.makeThumb( file, function( error, ret ) {
+		        imgBase64 = ret;
+		    });
+		});*/
+		//上传错误
+		uploader.on('error', function(error){
+		    if(error=="Q_EXCEED_SIZE_LIMIT")
+		    {
+		       layer.msg('上传文件大小错误,最大：'+fileSizeLimit/1024+'KB', {icon: 5});
+		    }else if(error=="Q_TYPE_DENIED"){
+		       	layer.msg('上传文件类型错误,仅支持：'+extensions, {icon: 5});
+	        }else{
+	            alert(error);
+	     	}
+		 });
+		//上传成功  
+		uploader.on('uploadSuccess', function( file,res ) {
+			//如果上传有错误
+			if(res.code == -1){
+				//隐藏进度条
+				$(".progress").hide();
+			    return layer.msg(res.message, {icon: 5});
+			}
+			//上传成功
+			if(res.code == 1)
+			{	
+				$(".up").show();
+			    $('#img_thumb').attr('src',res.data.url);
+			    $(".operate .check").html(file.name);
+			    //图片id保存到隐藏域
+			    $("#"+_this.c.uploadSubName).val(res.data.id); 
+			}
+		});  
+	}
+
+	//layui单文件上传
+	Up.prototype.file=function(option,callback){
+		var _this=this;
+		//初始配置为file类型
+		_this.f.file={
+			accept:'file',
+			size:$.parseJSON($.cookie('config')).uploadFileSize,
+			exts:$.parseJSON($.cookie('config')).fileType.replace(/,/g,'|'),
+		}
+		$.extend(true,_this.f,option);
+		/******************上传配置***************/
+		//加入上传接口地址
+		_this.f.file.url=_this.f.file.elem.attr('upload-url');
+		//如果是编辑页面则先显示出文件名并且加入隐藏input
+		if(_this.f.type=='edit' && _this.f.realName!=="")
+		{
+			var html='<div class="file_operate" style="display: inline-block;">';
+				html+= 	'<span class="layui-inline layui-upload-choose">'+_this.f.realName+'</span>';
+				html+= 	'<i class="layui-icon file_del" style="font-size:20px !important;margin-left: -10px;">&#xe640;</i>';
+				html+= 	'<input type="hidden" name="'+_this.f.file.uploadSubName+'" id="'+_this.f.file.uploadSubName+'" value="'+_this.f.id+'">';
+				html+='</div>';
+			_this.f.file.elem.after(html);	
+		}
+		//上传成功后操作
+		_this.f.file.done = function(res){
+			//如果上传有错误
+			if(res.code == -1){
+			    return layer.msg(res.message, {icon: 5});
+			}
+			//上传成功
+			if(res.code == 1)
+			{	
+				$('.file_operate').remove();
+				var html='<div class="file_operate" style="display: inline-block;">';
+					html+= 	'<span class="layui-inline layui-upload-choose">'+res.data.realName+'</span>';
+					html+= 	'<i class="layui-icon file_del" style="font-size:20px !important;margin-left: -10px;">&#xe640;</i>';
+					html+= 	'<input type="hidden" name="'+_this.f.file.uploadSubName+'" id="'+_this.f.file.uploadSubName+'" value="'+res.data.id+'">';
+					html+='</div>';
+				_this.f.file.elem.after(html);	
+			}			 
+		};
+		//文件删除按钮
+		$("body").on("click",".file_del",function(){
+	        layer.confirm('确定删除文件吗？',{icon:3, title:'提示信息'},function(index){
+	            $(".file_operate").hide(400,function(){
+	            	layer.close(index);
+	            	$(this).remove();
+	            });
+	        });
+	    })
+		//上传
+		var uploadInst = upload.render(_this.f.file);
+	}
+
+	/**
+	 * webuploader单文件上传
+	 * 必须传入参数
+		uploadOp.webuploadFile({
+			uploadSubName:"file_id",//上传成功后赋值的隐藏域的name
+			// webupload的配置项
+			webuploadOption:{
+				pick: $("#file"), //上传按钮id	
+		  		server:"{{:url('uploadFile')}}",
+			}
+		});
+	 */
+	Up.prototype.webuploadFile=function(option,callback){
+		var _this=this;
+		//初始配置为file类型
+		if(option.fileType == 'video')
+		{
+			var extensions = $.parseJSON($.cookie('config')).videoType;	  //限制类型
+			var fileSizeLimit = $.parseJSON($.cookie('config')).uploadVideoSize * 1024; //限制大小
+		}else{
+			var extensions = $.parseJSON($.cookie('config')).fileType;
+			var fileSizeLimit = $.parseJSON($.cookie('config')).uploadFileSize * 1024;
+		}
+		
+		_this.f.webuploadOption={
+			auto:true,
+			accept:{
+	  			extensions:extensions
+	  		},
+	  		fileSizeLimit:fileSizeLimit
+		}
+		$.extend(true,_this.f,option);
+
+		// 加入上传文件进度条
+		var proc ='<div class="layui-progress layui-progress-big progressFile" lay-filter="progressFile" lay-showpercent="true" style="width:300px;display:none;">';
+			proc+=	'<div class="layui-progress-bar" lay-percent="0%"></div>';
+			proc+='</div>';	
+		_this.f.webuploadOption.pick.parent().after(proc);
+		element.render('progress');
+		/******************上传配置***************/
+		//如果是编辑页面则先显示出文件名并且加入隐藏input
+		if(_this.f.type=='edit' && _this.f.realName!=="")
+		{
+			var html='<div class="file_operate" style="display: inline-block;">';
+				html+= 	'<span class="layui-inline layui-upload-choose">'+_this.f.realName+'</span>';
+				html+= 	'<i class="layui-icon file_del" style="font-size:20px !important;margin-left: -10px;">&#xe640;</i>';
+				html+= 	'<input type="hidden" name="'+_this.f.uploadSubName+'" id="'+_this.f.uploadSubName+'" value="'+_this.f.id+'">';
+				html+='</div>';
+			_this.f.webuploadOption.pick.after(html);	
+		}
+		//上传
+		var uploader = WebUploader.create(_this.f.webuploadOption);
+		// 文件上传过程中创建进度条实时显示。
+		uploader.on( 'uploadProgress', function( file, percentage ) {
+			$(".progressFile").show();
+			element.progress('progressFile', percentage.toFixed(2) * 100 + '%');
+		});
+		// 加入队列之前
+		uploader.on('beforeFileQueued', function(error){
+		    element.progress('progressFile','0%');
+		    uploader.reset();
+		});
+		//上传错误
+		uploader.on('error', function(error){
+		    if(error=="Q_EXCEED_SIZE_LIMIT")
+		    {
+		       layer.msg('上传文件大小错误,支持大小：'+fileSizeLimit/1024+'KB', {icon: 5});
+		    }else if(error=="Q_TYPE_DENIED"){
+		       layer.msg('上传文件类型错误,支持：'+extensions, {icon: 5});
+	        }else{
+	            alert(error);
+	     	}
+		 });
+		//上传成功  
+		uploader.on('uploadSuccess', function( file,res ) {
+			//如果上传有错误
+			if(res.code == -1){
+				//隐藏进度条
+				$(".progressFile").hide();
+			    return layer.msg(res.message, {icon: 5});
+			}
+			//上传成功
+			if(res.code == 1)
+			{
+				$('.file_operate').remove();
+				var html='<div class="file_operate" style="display: inline-block;">';
+					html+= 	'<span class="layui-inline layui-upload-choose">'+file.name+'</span>';
+					html+= 	'<i class="layui-icon file_del" style="font-size:20px !important;margin-left: -10px;">&#xe640;</i>';
+					html+= 	'<input type="hidden" name="'+_this.f.uploadSubName+'" id="'+_this.f.uploadSubName+'" value="'+res.data.id+'">';
+					html+='</div>';
+				_this.f.webuploadOption.pick.after(html); 
+			}
+		});  
+		//文件删除按钮
+		$("body").on("click",".file_del",function(){
+	        layer.confirm('确定删除文件吗？',{icon:3, title:'提示信息'},function(index){
+	        	//隐藏进度条
+				$(".progressFile").hide();
+				element.progress('progressFile','0%');
+	            $(".file_operate").hide(400,function(){
+	            	layer.close(index);
+	            	$(this).remove();
+	            });
+	        });
+	    })
+	}
+
+	var uploadOp=new Up();
+	exports("uploadOp",uploadOp);
+});
+

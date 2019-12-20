@@ -1,0 +1,272 @@
+---------------------------------------------------------------
+
+[2019-12-20T11:46:35+08:00] 127.0.0.1 GET 127.0.0.1/yd/public/
+[运行时间：0.150000s] [吞吐率：6.67req/s] [内存消耗：2,868.28kb] [文件加载：92]
+[ info ] [ LANG ] D:\project\yd\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'creat_work=new; SID_64=c9874331; PHPSESSID=2svdrqqhe4410c17udbpkpnon2; USER_NAME_COOKIE=admin; OA_USER_ID=admin; SID_1=83e18675',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\project\yd\application\home\view\index\index.html [ array (
+  0 => 'footer',
+  1 => 'config',
+  2 => 'cloumn',
+  3 => 'title',
+  4 => 'slide',
+  5 => 'video',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002000s ] mysql:host=127.0.0.1;port=3306;dbname=yd;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_link` [ RunTime:0.013000s ]
+[ sql ] [ SQL ] SELECT a.*,CONCAT("http://127.0.0.1/yd/public/static/upload/",b.src) img_url FROM `yd_link` `a` LEFT JOIN `yd_img_info` `b` ON `a`.`thumb_id`=`b`.`id` ORDER BY `a`.`sort` [ RunTime:0.006000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_config` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT `only_tag`,`value` FROM `yd_config` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_column` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT * FROM `yd_column` ORDER BY `sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_slide` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT a.*,CONCAT("http://127.0.0.1/yd/public/static/upload/",b.src) url FROM `yd_slide` `a` LEFT JOIN `yd_img_info` `b` ON `a`.`img_id`=`b`.`id` ORDER BY `a`.`type`,`a`.`sort` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_download` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `yd_download` `a` LEFT JOIN `yd_img_info` `b` ON `a`.`logo_id`=`b`.`id` LEFT JOIN `yd_file_info` `c` ON `a`.`file_id`=`c`.`id` WHERE  `a`.`state` = 1  AND `a`.`type` = 'video' [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SELECT a.id,a.download_name,a.add_time,concat("http://127.0.0.1/yd/public/static/upload/",b.src) img_url,concat("http://127.0.0.1/yd/public/static/download/",c.src) file_url,c.real_name FROM `yd_download` `a` LEFT JOIN `yd_img_info` `b` ON `a`.`logo_id`=`b`.`id` LEFT JOIN `yd_file_info` `c` ON `a`.`file_id`=`c`.`id` WHERE  `a`.`state` = 1  AND `a`.`type` = 'video' ORDER BY `a`.`id` DESC LIMIT 0,3 [ RunTime:0.000000s ]
+[ error ] [8]未定义变量: action[D:\project\yd\runtime\temp\f8ef0c91903ec44160be176dfe7be039.php:54]
+[ error ] [8]未定义变量: action[D:\project\yd\runtime\temp\f8ef0c91903ec44160be176dfe7be039.php:54]
+---------------------------------------------------------------
+
+[2019-12-20T11:46:49+08:00] 127.0.0.1 GET 127.0.0.1/yd/public/index.php/kdsa
+[运行时间：0.080000s] [吞吐率：12.50req/s] [内存消耗：1,627.49kb] [文件加载：69]
+[ info ] [ LANG ] D:\project\yd\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+  'rule' => 'kdsa',
+  'route' => 'admin/index/login',
+  'option' => 
+  array (
+    'merge_rule_regex' => false,
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'creat_work=new; SID_64=c9874331; PHPSESSID=2svdrqqhe4410c17udbpkpnon2; USER_NAME_COOKIE=admin; OA_USER_ID=admin; SID_1=83e18675',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ VIEW ] D:\project\yd\application\admin\view\index\login.html [ array (
+  0 => 'title',
+) ]
+---------------------------------------------------------------
+
+[2019-12-20T11:46:52+08:00] 127.0.0.1 POST 127.0.0.1/yd/public/index.php/admin/index/login
+[运行时间：0.054000s] [吞吐率：18.52req/s] [内存消耗：1,932.84kb] [文件加载：80]
+[ info ] [ LANG ] D:\project\yd\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'creat_work=new; SID_64=c9874331; PHPSESSID=2svdrqqhe4410c17udbpkpnon2; USER_NAME_COOKIE=admin; OA_USER_ID=admin; SID_1=83e18675',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/yd/public/index.php/kdsa',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'content-length' => '63',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'data' => 'eyJ1c2VybmFtZSI6ImFkbWluIiwibG9naW5fcHdkIjoiOTA5MDkwIn0=',
+)
+[ error ] [0]致命错误: Call to undefined function crypt\openssl_encrypt()[D:\project\yd\extend\crypt\Aes.php:18]
+---------------------------------------------------------------
+
+[2019-12-20T11:46:56+08:00] 127.0.0.1 POST 127.0.0.1/yd/public/index.php/admin/index/login
+[运行时间：0.058000s] [吞吐率：17.24req/s] [内存消耗：1,933.20kb] [文件加载：80]
+[ info ] [ LANG ] D:\project\yd\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'creat_work=new; SID_64=c9874331; PHPSESSID=2svdrqqhe4410c17udbpkpnon2; USER_NAME_COOKIE=admin; OA_USER_ID=admin; SID_1=83e18675',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/yd/public/index.php/kdsa',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '63',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'data' => 'eyJ1c2VybmFtZSI6ImFkbWluIiwibG9naW5fcHdkIjoiOTA5MDkwIn0=',
+)
+[ error ] [0]致命错误: Call to undefined function crypt\openssl_encrypt()[D:\project\yd\extend\crypt\Aes.php:18]
+---------------------------------------------------------------
+
+[2019-12-20T11:55:04+08:00] 127.0.0.1 POST 127.0.0.1/yd/public/index.php/admin/index/login
+[运行时间：0.222000s] [吞吐率：4.50req/s] [内存消耗：2,740.59kb] [文件加载：86]
+[ info ] [ LANG ] D:\project\yd\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'creat_work=new; SID_64=c9874331; PHPSESSID=2svdrqqhe4410c17udbpkpnon2; USER_NAME_COOKIE=admin; OA_USER_ID=admin; SID_1=83e18675',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/yd/public/index.php/kdsa',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'origin' => 'http://127.0.0.1',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'content-length' => '63',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+)
+[ info ] [ PARAM ] array (
+  'data' => 'eyJ1c2VybmFtZSI6ImFkbWluIiwibG9naW5fcHdkIjoiOTA5MDkwIn0=',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ DB ] INIT mysql
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=yd;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_admin` [ RunTime:0.008000s ]
+[ sql ] [ SQL ] SELECT * FROM `yd_admin` WHERE (  `username` = 'admin' ) AND `yd_admin`.`delete_time` IS NULL LIMIT 1 [ RunTime:0.000000s ]
+[ sql ] [ SQL ] UPDATE `yd_admin`  SET `login_salt` = '574193' , `login_pwd` = '982c76bfbbf4a46453972d23941da7f3' , `login_total` = 47 , `login_time` = 1576814104  WHERE (  `id` = 1 ) AND `yd_admin`.`delete_time` IS NULL [ RunTime:0.023000s ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=yd;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_admin_log` [ RunTime:0.007000s ]
+[ sql ] [ SQL ] INSERT INTO `yd_admin_log` (`code` , `username` , `info` , `add_time` , `ip` , `get`) VALUES (1 , 'admin' , '提示信息：登录成功' , 1576814104 , '127.0.0.1' , '/yd/public/index.php/admin/index/login') [ RunTime:0.116000s ]
+---------------------------------------------------------------
+
+[2019-12-20T11:55:04+08:00] 127.0.0.1 GET 127.0.0.1/yd/public/index.php/admin/index/index
+[运行时间：0.105000s] [吞吐率：9.52req/s] [内存消耗：2,803.33kb] [文件加载：89]
+[ info ] [ LANG ] D:\project\yd\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'creat_work=new; SID_64=c9874331; PHPSESSID=2svdrqqhe4410c17udbpkpnon2; USER_NAME_COOKIE=admin; OA_USER_ID=admin; SID_1=83e18675',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/yd/public/index.php/kdsa',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\project\yd\application\admin\view\index\index.html [ array (
+  0 => 'title',
+  1 => 'admin',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=yd;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_admin` [ RunTime:0.013000s ]
+[ sql ] [ SQL ] SELECT * FROM `yd_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_role_auth` [ RunTime:0.010000s ]
+[ sql ] [ SQL ] SELECT `auth_id` FROM `yd_role_auth` WHERE  `role_id` = 1 [ RunTime:0.000000s ]
+---------------------------------------------------------------
+
+[2019-12-20T11:55:04+08:00] 127.0.0.1 GET 127.0.0.1/yd/public/index.php/admin/index/main
+[运行时间：0.202000s] [吞吐率：4.95req/s] [内存消耗：2,465.41kb] [文件加载：79]
+[ info ] [ LANG ] D:\project\yd\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'creat_work=new; SID_64=c9874331; PHPSESSID=2svdrqqhe4410c17udbpkpnon2; USER_NAME_COOKIE=admin; OA_USER_ID=admin; SID_1=83e18675; config=%7B%22imgType%22%3A%22png%2Cgif%2Cjpeg%2Cjpg%22%2C%22uploadImgSize%22%3A%223072%22%2C%22fileType%22%3A%22exe%22%2C%22uploadFileSize%22%3A%2210240%22%2C%22videoType%22%3A%22mp4%22%2C%22uploadVideoSize%22%3A%2240960%22%7D',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/yd/public/index.php/admin/index/index',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'upgrade-insecure-requests' => '1',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] D:\project\yd\application\admin\view\index\main.html [ array (
+  0 => 'title',
+  1 => 'username',
+  2 => 'article_info',
+  3 => 'download_info',
+  4 => 'echarts_data',
+) ]
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000000s ] mysql:host=127.0.0.1;port=3306;dbname=yd;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_article` [ RunTime:0.013000s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `yd_article` [ RunTime:0.000000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_article_access_log` [ RunTime:0.014000s ]
+[ sql ] [ SQL ] SELECT SUM(count) count FROM `yd_article_access_log` WHERE  `date` BETWEEN '20191216' AND '20191222' [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_download_access_log` [ RunTime:0.016000s ]
+[ sql ] [ SQL ] SELECT * FROM `yd_download_access_log` ORDER BY `id` DESC LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT SUM(count) count FROM `yd_download_access_log` WHERE  `date` BETWEEN '20191216' AND '20191222' [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SELECT * FROM `yd_download_access_log` WHERE  `date_y` = '2019' [ RunTime:0.000000s ]
+---------------------------------------------------------------
+
+[2019-12-20T11:55:05+08:00] 127.0.0.1 GET 127.0.0.1/yd/public/index.php/admin/index/getadminnav
+[运行时间：0.130000s] [吞吐率：7.69req/s] [内存消耗：2,654.67kb] [文件加载：85]
+[ info ] [ LANG ] D:\project\yd\thinkphp\lang\zh-cn.php
+[ info ] [ ROUTE ] array (
+)
+[ info ] [ HEADER ] array (
+  'cookie' => 'creat_work=new; SID_64=c9874331; PHPSESSID=2svdrqqhe4410c17udbpkpnon2; USER_NAME_COOKIE=admin; OA_USER_ID=admin; SID_1=83e18675; config=%7B%22imgType%22%3A%22png%2Cgif%2Cjpeg%2Cjpg%22%2C%22uploadImgSize%22%3A%223072%22%2C%22fileType%22%3A%22exe%22%2C%22uploadFileSize%22%3A%2210240%22%2C%22videoType%22%3A%22mp4%22%2C%22uploadVideoSize%22%3A%2240960%22%7D',
+  'accept-language' => 'zh-CN,zh;q=0.9',
+  'accept-encoding' => 'gzip, deflate, br',
+  'referer' => 'http://127.0.0.1/yd/public/index.php/admin/index/index',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36',
+  'x-requested-with' => 'XMLHttpRequest',
+  'accept' => '*/*',
+  'cache-control' => 'no-cache',
+  'pragma' => 'no-cache',
+  'connection' => 'keep-alive',
+  'host' => '127.0.0.1',
+  'content-length' => '',
+  'content-type' => '',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001000s ] mysql:host=127.0.0.1;port=3306;dbname=yd;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_admin` [ RunTime:0.013000s ]
+[ sql ] [ SQL ] SELECT * FROM `yd_admin` WHERE  `id` = 1 LIMIT 1 [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_role_auth` [ RunTime:0.016000s ]
+[ sql ] [ SQL ] SELECT `auth_id` FROM `yd_role_auth` WHERE  `role_id` = 1 [ RunTime:0.002000s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `yd_auth` [ RunTime:0.014000s ]
+[ sql ] [ SQL ] SELECT * FROM `yd_auth` WHERE  `level` = 0  AND `is_show` = 1  AND `type` = 0 ORDER BY `sort` [ RunTime:0.001000s ]
+[ sql ] [ SQL ] SELECT * FROM `yd_auth` WHERE  `level` = 1  AND `is_show` = 1  AND `type` = 0 ORDER BY `sort` [ RunTime:0.001000s ]

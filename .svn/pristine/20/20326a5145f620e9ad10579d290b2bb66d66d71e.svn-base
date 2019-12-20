@@ -1,0 +1,28 @@
+{{include file='public/head' /}}
+<style type="text/css">
+    p{
+        background: #000 !important;
+        color: #c6bfb0 !important;
+    }
+</style>
+<body>
+    {{include file='public/nav' /}}
+    <div class="banner banner-news"></div>
+    <div class="pre color-bank">
+        <div class="container">
+            <div class="head">
+                <h3 class="title font-30">{{:$data['title']}}</h3>
+                <div class="time">
+                    <span>{{:date('Y-m-d',$data['add_time'])}}</span>
+                </div>
+                <hr>
+            </div>
+            <div class="pre-content">
+               {{:$data['content']}}
+            </div>      
+        </div>
+    </div>
+    {{include file='public/footer' /}}
+</body>
+</html>
+{{include file='public/foot' /}}
